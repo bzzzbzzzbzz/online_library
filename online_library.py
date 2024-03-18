@@ -59,12 +59,12 @@ if __name__ == '__main__':
             response = requests.get(book_url)
             response.raise_for_status()
             check_for_redirect(response)
-            book_parser = parse_book_page(response)
-            filename = book_parser['Название']
+            book = parse_book_page(response)
+            filename = book['Название']
             download_txt(book_number, filename)
-            image_link = book_parser['Картинка']
+            image_link = book['Картинка']
             download_image(image_link)
-            print(book_parser)
+            print(book)
         except requests.HTTPError:
             print(f'HTTP Error. Probably, {book_url} is not book.')
             continue
