@@ -20,6 +20,7 @@ def download_txt(book_num, filename, folder='books/'):
     payload = {'id': book_num}
     response = requests.get(url, params=payload)
     response.raise_for_status()
+    check_for_redirect(response)
     valid_filename = f'{sanitize_filename(filename)}.txt'
     valid_path = os.path.join(folder, valid_filename)
     with open(valid_path, 'wb') as file:
@@ -31,6 +32,7 @@ def download_image(url, folder='images/'):
     os.makedirs('images', exist_ok=True)
     response = requests.get(url)
     response.raise_for_status()
+    check_for_redirect(response)
     url_path = urlsplit(url).path
     filename = url_path.split('/')[2]
     valid_path = os.path.join(folder, filename)
