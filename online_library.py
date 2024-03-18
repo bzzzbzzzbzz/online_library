@@ -42,11 +42,15 @@ def download_image(url, folder='images/'):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Choose diapason of books. For example if you chose start_id 10, '
-                                                 'and end_id 20 '
+    parser = argparse.ArgumentParser(description='Script for downloading books from tululu.org. It provide to '
+                                                 'download books and their images in diapason which you will choose. '
+                                                 'There are 2 options which help you to use script: `--start_id`'
+                                                 'and `--end_id`'
+                                                 'For example, if you want to download books from 10 to 20 you can use:'
                                                  '```python3 online_library.py --start_id 10 --end_id 20``` '
                                                  'it will download books from number 10 to 20 and their '
-                                                 'images')
+                                                 'images. '
+                                                 'Using script without options will download first 10 books from tululu')
     parser.add_argument('--start_id', help='enter first book: ', default=1)
     parser.add_argument('--end_id', help='enter last book ', default=10)
     args = parser.parse_args()
