@@ -66,7 +66,6 @@ if __name__ == '__main__':
             download_txt(book_number, filename)
             image_link = book['Image']
             download_image(image_link)
-            print(book)
         except requests.HTTPError:
             print(f'HTTP Error. Probably, {book_url} is not book.')
             continue
