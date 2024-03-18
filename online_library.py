@@ -51,8 +51,8 @@ if __name__ == '__main__':
                                                  'it will download books from number 10 to 20 and their '
                                                  'images. '
                                                  'Using script without options will download first 10 books from tululu')
-    parser.add_argument('--start_id', help='enter first book: ', default=1)
-    parser.add_argument('--end_id', help='enter last book ', default=10)
+    parser.add_argument('--start_id', help='enter first book: ', default=1, type=int)
+    parser.add_argument('--end_id', help='enter last book ', default=10, type=int)
     args = parser.parse_args()
     fail_connection = 0
     for book_number in range(int(args.start_id), int(args.end_id)+1):
