@@ -1,11 +1,12 @@
+import argparse
+import os
 import time
+from urllib.parse import urlsplit
 
 import requests
-import os
 from pathvalidate import sanitize_filename
+
 from parsing import parse_book_page
-from urllib.parse import urlsplit
-import argparse
 
 
 def check_for_redirect(url):
