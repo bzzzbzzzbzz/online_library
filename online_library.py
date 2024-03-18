@@ -62,9 +62,9 @@ if __name__ == '__main__':
             response.raise_for_status()
             check_for_redirect(response)
             book = parse_book_page(response)
-            filename = book['Название']
+            filename = book['Book name']
             download_txt(book_number, filename)
-            image_link = book['Картинка']
+            image_link = book['Image']
             download_image(image_link)
             print(book)
         except requests.HTTPError:
