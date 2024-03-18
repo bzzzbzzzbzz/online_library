@@ -9,9 +9,7 @@ from pathvalidate import sanitize_filename
 from parsing import parse_book_page
 
 
-def check_for_redirect(url):
-    response = requests.get(url)
-    response.raise_for_status()
+def check_for_redirect(response):
     if response.history:
         raise requests.HTTPError('Redirect detected')
 
@@ -58,8 +56,10 @@ if __name__ == '__main__':
     for book_number in range(int(args.start_id), int(args.end_id)+1):
         book_url = f'https://tululu.org/b{book_number}/'
         try:
-            check_for_redirect(book_url)
-            book_parser = parse_book_page(book_url)
+            response = requests.get(book_url)
+            response.raise_for_status()
+            check_for_redirect(response)
+            book_parser = parse_book_page(response)
             filename = book_parser['Название']
             download_txt(book_number, filename)
             image_link = book_parser['Картинка']
