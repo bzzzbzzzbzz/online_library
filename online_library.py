@@ -55,16 +55,16 @@ if __name__ == '__main__':
     parser.add_argument('--end_id', help='enter last book ', default=10, type=int)
     args = parser.parse_args()
     fail_connection = 0
-    for book_number in range(int(args.start_id), int(args.end_id)+1):
+    for book_number in range(args.start_id, args.end_id+1):
         book_url = f'https://tululu.org/b{book_number}/'
         try:
             response = requests.get(book_url)
             response.raise_for_status()
             check_for_redirect(response)
-            book = parse_book_page(response)
-            filename = book['Book name']
+            book_details = parse_book_page(response)
+            filename = book_details['book_title']
             download_txt(book_number, filename)
-            image_link = book['Image']
+            image_link = book_details['book_image_link']
             download_image(image_link)
         except requests.HTTPError:
             print(f'HTTP Error. Probably, {book_url} is not book.')
