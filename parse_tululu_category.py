@@ -18,10 +18,10 @@ def parse_books_links(pages_number):
 
         soup = BeautifulSoup(response.text, 'lxml')
 
-        book_tables = soup.find_all('table', class_='d_book')
+        book_tables = soup.select('table.d_book')
 
         for table in book_tables:
-            a_tag = table.find('a', href=True)
+            a_tag = table.select_one('a[href]')
             href = a_tag['href']
             if href.startswith('/b') and href[2].isdigit():
                 full_url = urljoin(url, href)
